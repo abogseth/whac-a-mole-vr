@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxhu0jy1vod1f"]
+
+[ext_resource type="PackedScene" uid="uid://x6vishiwxw7m" path="res://prefabs/mole_model.tscn" id="1_dmcpu"]
+[ext_resource type="Script" uid="uid://b31xcd41714js" path="res://scripts/gameplay/mole.gd" id="1_fo5de"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fo5de"]
+radius = 0.085
+height = 0.2
+
+[sub_resource type="Gradient" id="Gradient_l0ssq"]
+offsets = PackedFloat32Array(0.14760147, 0.8782288)
+colors = PackedColorArray(0.5882353, 0.29411766, 0, 1, 0.76862746, 0.6431373, 0.5176471, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8f43x"]
+gradient = SubResource("Gradient_l0ssq")
+
+[sub_resource type="Curve" id="Curve_l0ssq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8f43x"]
+curve = SubResource("Curve_l0ssq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m3065"]
+angle_min = 90.000015
+angle_max = 90.000015
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_curve = SubResource("CurveTexture_8f43x")
+color_ramp = SubResource("GradientTexture1D_8f43x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opw8q"]
+albedo_color = Color(0.5372549, 0.31764707, 0.16078432, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gojv5"]
+material = SubResource("StandardMaterial3D_opw8q")
+radius = 0.01
+height = 0.02
+
+[node name="Mole" type="AnimatableBody3D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_fo5de")
+
+[node name="MoleModel" parent="." instance=ExtResource("1_dmcpu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07490342, 0)
+shape = SubResource("CapsuleShape3D_fo5de")
+
+[node name="HitArea" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07490342, 0)
+shape = SubResource("CapsuleShape3D_fo5de")
+
+[node name="HitParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14240326, 0)
+emitting = false
+amount = 80
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.1
+collision_base_size = 0.03
+process_material = SubResource("ParticleProcessMaterial_m3065")
+draw_pass_1 = SubResource("SphereMesh_gojv5")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

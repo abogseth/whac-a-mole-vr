@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://becyolmjx42rh"]
+
+[ext_resource type="PackedScene" uid="uid://c41fm5wfk7vv2" path="res://assets/Moles and Hammers.glb" id="1_lu8lw"]
+
+[node name="Sketchfab_Scene" unique_id=55247451 instance=ExtResource("1_lu8lw")]

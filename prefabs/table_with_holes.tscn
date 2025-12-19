@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp3stq6rivyb8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iweam"]
+albedo_color = Color(0.85490197, 0.42745098, 0.25882354, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tw8k"]
+albedo_color = Color(0.07626831, 0.07626831, 0.07626831, 1)
+
+[node name="CSGBox3D" type="CSGBox3D"]
+size = Vector3(1.5, 1, 0.6)
+material = SubResource("StandardMaterial3D_iweam")
+
+[node name="Hole1" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.452, 0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="Hole2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.452, -0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="Hole3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.452, 0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="Hole4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0.452, -0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="Hole5" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.452, 0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="Hole6" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.452, -0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="Hole7" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.452, 0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="Hole8" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.452, -0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="Hole9" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.452, 0.12)
+operation = 2
+radius = 0.1
+height = 0.1
+sides = 30
+
+[node name="HoleCovers" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44824195, 0)
+size = Vector3(1.45, 0.1, 0.59)
+material = SubResource("StandardMaterial3D_6tw8k")

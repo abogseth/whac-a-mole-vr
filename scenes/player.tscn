@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bglful1qdlmnm"]
+
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_b26j0"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="2_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_1jxqw"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="5_b26j0"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_dw050"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_n7ghd"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_n7ghd"]
+
+[node name="XROrigin3D" type="XROrigin3D"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="LeftHandController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23611826, 1, 0)
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="LeftHandController" instance=ExtResource("2_b26j0")]
+
+[node name="MovementDirect" parent="LeftHandController" instance=ExtResource("4_1jxqw")]
+strafe = true
+
+[node name="FunctionPickup" parent="LeftHandController" instance=ExtResource("5_b26j0")]
+
+[node name="FunctionPointer" parent="LeftHandController" instance=ExtResource("6_n7ghd")]
+active_button_action = "ax_button"
+show_laser = 2
+laser_length = 1
+
+[node name="RightHandController" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27564538, 1, 0)
+tracker = &"right_hand"
+
+[node name="RightHand" parent="RightHandController" instance=ExtResource("2_i3pqv")]
+
+[node name="MovementTurn" parent="RightHandController" instance=ExtResource("7_n7ghd")]
+
+[node name="FunctionPickup" parent="RightHandController" instance=ExtResource("5_b26j0")]
+
+[node name="FunctionPointer" parent="RightHandController" instance=ExtResource("6_n7ghd")]
+active_button_action = "ax_button"
+show_laser = 2
+laser_length = 1
+
+[node name="PlayerBody" parent="." instance=ExtResource("6_dw050")]
+collision_mask = 1019
