@@ -157,7 +157,7 @@ scene = ExtResource("7_trceg")
 viewport_size = Vector2(1000, 600)
 input_gamepad = true
 transparent = 0
-scene_properties_keys = PackedStringArray("res://game_ui")
+scene_properties_keys = PackedStringArray("main_ui.gd")
 
 [node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("holes")]
 script = ExtResource("9_85g3d")

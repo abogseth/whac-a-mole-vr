@@ -94,25 +94,6 @@ func _play_game():
 
 	_start_pop_timer()
 
-# Stops the game when time has ran out
-func _on_timer_timeout():
-	print("Timer is done")
-	if pop_timer:
-		pop_timer.stop()
-	
-	for mole in moles:
-		if mole.is_up:
-			mole.go_down()
-	
-	#for i in mole_hit_time.size():
-		#print("Mole ", i, " with times: ")
-		#for time in mole_hit_time[i]:
-			#print(time)
-	var game_stats: Dictionary = calculate_statistics()
-	
-	# What to do when the playTime has run out
-	emit_signal("end_game", game_stats)
-
 # Starts a timer for an individual mole
 func _start_pop_timer():
 	pop_timer = Timer.new()
@@ -146,6 +127,25 @@ func _on_pop_timer_timeout():
 		var mole_index = holes.find(mole.get_parent())
 		mole_hit_rate[mole_index].append(false)
 		mole.go_down()
+
+# Stops the game when time has ran out
+func _on_timer_timeout():
+	print("Timer is done")
+	if pop_timer:
+		pop_timer.stop()
+	
+	for mole in moles:
+		if mole.is_up:
+			mole.go_down()
+	
+	#for i in mole_hit_time.size():
+		#print("Mole ", i, " with times: ")
+		#for time in mole_hit_time[i]:
+			#print(time)
+	var game_stats: Dictionary = calculate_statistics()
+	
+	# What to do when the playTime has run out
+	emit_signal("end_game", game_stats)
 
 func calculate_statistics():
 	#print("Stats:")

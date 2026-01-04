@@ -77,7 +77,7 @@ func _on_back_pressed():
 
 
 func _on_stats_pressed():
-	_load_ui(statistics_scene) # Må endres til en statistikk meny
+	_load_ui(statistics_scene)
 
 func _on_quit_pressed():
 	_load_ui(settings_scene) # Må endres til å avslutte programmet
