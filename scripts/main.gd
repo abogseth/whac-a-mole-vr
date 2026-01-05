@@ -80,7 +80,7 @@ func _on_stats_pressed():
 	_load_ui(statistics_scene)
 
 func _on_quit_pressed():
-	_load_ui(settings_scene) # Må endres til å avslutte programmet
+	get_tree().quit()
 
 # Starts a game and loads the score scene
 func _on_play_pressed():
